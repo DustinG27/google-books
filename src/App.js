@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "./components/Header";
 import Container from "./components/Container";
-// import SearchBar from "./components/SearchBar";
+import BookList from "./components/BookList";
 import './App.css';
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
     <div className = "App">
       <Header />
       <Container />
-  
+      <BookList />
     </div>
   )
  }

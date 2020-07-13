@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SearchBar from "../SearchBar";
+import BookList from "../BookList";
 import axios from "axios";
 import "./style.css";
 
@@ -19,8 +20,10 @@ class Container extends Component {
   searchBook = (event) => {
     event.preventDefault();
     const url = "https://www.googleapis.com/books/v1/volumes?q=";
-    // get user input using axios 
-    axios.get(url + this.state.searchField).then((data) => console.log(data));
+    // get user input using axios then save them into the empty array
+    axios
+      .get(url + this.state.searchField)
+      .then((data) => this.setState({ books: [...data.body.items] }));
   };
 
   // method for updating state
@@ -32,7 +35,11 @@ class Container extends Component {
   render() {
     return (
       <div>
-        <SearchBar searchBook={this.searchBook} handleSearch={this.handleSearch} />
+        <SearchBar
+          searchBook={this.searchBook}
+          handleSearch={this.handleSearch}
+        />
+        <BookList books={this.state.books}/>
       </div>
     );
   }
